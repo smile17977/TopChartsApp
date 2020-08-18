@@ -9,19 +9,30 @@
 import UIKit
 
 class MediaProductTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet var imageOfMedia: UIImageView!
+    
+    @IBOutlet var nameLabel: UILabel!
+    
+    func configure(_ imageView: UIImageView) {
         
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-
-        // Configure the view for the selected state
+        imageView.layer.cornerRadius = imageView.frame.size.height / 4
+        imageView.clipsToBounds = true
     }
     
-    
+    func configure(with results: [Result]?, for index: Int, cell: MediaProductTableViewCell?) {
+           
+           
+           cell?.nameLabel?.text = results?[index].name
+           DispatchQueue.global().async {
+           guard let stringURL = results?[index].artworkUrl100 else { return }
+           guard let imageURL = URL(string: stringURL) else { return }
+           guard let imageData = try? Data(contentsOf: imageURL) else { return }
+           
+           DispatchQueue.main.async {
+               cell?.imageOfMedia?.image = UIImage(data: imageData)
+               
+           }
+        }
+       }
 
 }

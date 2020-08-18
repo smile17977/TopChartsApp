@@ -9,8 +9,9 @@
 import UIKit
 
 class TopChartsTableViewController: UITableViewController {
+
     
-//    var results: [Result] = []
+
     var mediaProduct: MediaProduct?
     
 
@@ -19,7 +20,6 @@ class TopChartsTableViewController: UITableViewController {
         
         NetworkManager.shared.fetchData(from: Requests.mediaProjectURL) { (mediaProduct) in
             DispatchQueue.main.async {
-//                self.results = mediaProduct.feed.results
                 self.mediaProduct = mediaProduct
                 self.tableView.reloadData()
                 print(self.mediaProduct?.feed.results ?? 0)
@@ -32,6 +32,7 @@ class TopChartsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -41,27 +42,17 @@ class TopChartsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        configure(with: mediaProduct?.feed.results, for: indexPath.row, cell: cell)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MediaProductTableViewCell
+        
+        cell.configure(with: mediaProduct?.feed.results, for: indexPath.row, cell: cell)
+        
+        cell.configure(cell.imageOfMedia)
         
         return cell
     }
     
-    func configure(with results: [Result]?, for index: Int, cell: UITableViewCell?) {
-        
-        cell?.textLabel?.text = results?[index].name
-        
-        guard let stringURL = results?[index].artworkUrl100 else { return }
-        guard let imageURL = URL(string: stringURL) else { return }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return }
-        
-        DispatchQueue.main.async {
-            cell?.imageView?.image = UIImage(data: imageData)
-            
-        }
-        
-    }
+   
     
     
     

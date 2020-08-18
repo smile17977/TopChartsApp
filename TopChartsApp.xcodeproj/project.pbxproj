@@ -20,7 +20,7 @@
 		E7AC22EE24E99CEE00D37708 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */; };
 		E7AC22F124E99D8000D37708 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22F024E99D8000D37708 /* Requests.swift */; };
 		E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD938324EBF370005B0401 /* MediaProductViewController.swift */; };
-		E7DD938624EC3771005B0401 /* MediaProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD938524EC3771005B0401 /* MediaProductTableViewCell.swift */; };
+		E7DD939624EC76D2005B0401 /* MediaProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +39,7 @@
 		E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E7AC22F024E99D8000D37708 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		E7DD938324EBF370005B0401 /* MediaProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductViewController.swift; sourceTree = "<group>"; };
-		E7DD938524EC3771005B0401 /* MediaProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductTableViewCell.swift; sourceTree = "<group>"; };
+		E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 		E7DD938724EC3777005B0401 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E7DD938524EC3771005B0401 /* MediaProductTableViewCell.swift */,
+				E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -250,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7DD938624EC3771005B0401 /* MediaProductTableViewCell.swift in Sources */,
+				E7DD939624EC76D2005B0401 /* MediaProductTableViewCell.swift in Sources */,
 				E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */,
 				E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */,
 				E74A0B0D24E7F8A100F0B39C /* AgreementViewController.swift in Sources */,
