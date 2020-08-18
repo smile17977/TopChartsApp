@@ -9,21 +9,37 @@
 /* Begin PBXBuildFile section */
 		E74A0B0924E7F8A100F0B39C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B0824E7F8A100F0B39C /* AppDelegate.swift */; };
 		E74A0B0B24E7F8A100F0B39C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B0A24E7F8A100F0B39C /* SceneDelegate.swift */; };
-		E74A0B0D24E7F8A100F0B39C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B0C24E7F8A100F0B39C /* ViewController.swift */; };
+		E74A0B0D24E7F8A100F0B39C /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B0C24E7F8A100F0B39C /* AgreementViewController.swift */; };
 		E74A0B1024E7F8A100F0B39C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E74A0B0E24E7F8A100F0B39C /* Main.storyboard */; };
 		E74A0B1224E7F8A900F0B39C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E74A0B1124E7F8A900F0B39C /* Assets.xcassets */; };
 		E74A0B1524E7F8A900F0B39C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E74A0B1324E7F8A900F0B39C /* LaunchScreen.storyboard */; };
+		E74A0B2524E831F800F0B39C /* AgreementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */; };
+		E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B2624E8365F00F0B39C /* Extensions.swift */; };
+		E7AC22E924E98A0800D37708 /* TopChartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */; };
+		E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22EA24E99B1000D37708 /* mediaProduct.swift */; };
+		E7AC22EE24E99CEE00D37708 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */; };
+		E7AC22F124E99D8000D37708 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22F024E99D8000D37708 /* Requests.swift */; };
+		E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD938324EBF370005B0401 /* MediaProductViewController.swift */; };
+		E7DD938624EC3771005B0401 /* MediaProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD938524EC3771005B0401 /* MediaProductTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E74A0B0524E7F8A100F0B39C /* TopChartsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopChartsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74A0B0824E7F8A100F0B39C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E74A0B0A24E7F8A100F0B39C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E74A0B0C24E7F8A100F0B39C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E74A0B0C24E7F8A100F0B39C /* AgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementViewController.swift; sourceTree = "<group>"; };
 		E74A0B0F24E7F8A100F0B39C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E74A0B1124E7F8A900F0B39C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E74A0B1424E7F8A900F0B39C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E74A0B1624E7F8A900F0B39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementPresenter.swift; sourceTree = "<group>"; };
+		E74A0B2624E8365F00F0B39C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartsTableViewController.swift; sourceTree = "<group>"; };
+		E7AC22EA24E99B1000D37708 /* mediaProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaProduct.swift; sourceTree = "<group>"; };
+		E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E7AC22F024E99D8000D37708 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		E7DD938324EBF370005B0401 /* MediaProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductViewController.swift; sourceTree = "<group>"; };
+		E7DD938524EC3771005B0401 /* MediaProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,111 @@
 		E74A0B0724E7F8A100F0B39C /* TopChartsApp */ = {
 			isa = PBXGroup;
 			children = (
+				E74A0B1C24E7F93B00F0B39C /* AppDelegate */,
+				E74A0B2124E82D6600F0B39C /* SceneDelegate */,
+				E7AC22EF24E99CF300D37708 /* Api */,
+				E7AC22EC24E99B1600D37708 /* Models */,
+				E7AC22E224E853F900D37708 /* Extensions */,
+				E74A0B2224E82D7600F0B39C /* Modules */,
+				E74A0B1D24E7F9B100F0B39C /* Storyboards */,
+				E74A0B2024E82CD600F0B39C /* Support */,
+			);
+			path = TopChartsApp;
+			sourceTree = "<group>";
+		};
+		E74A0B1C24E7F93B00F0B39C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
 				E74A0B0824E7F8A100F0B39C /* AppDelegate.swift */,
-				E74A0B0A24E7F8A100F0B39C /* SceneDelegate.swift */,
-				E74A0B0C24E7F8A100F0B39C /* ViewController.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		E74A0B1D24E7F9B100F0B39C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
 				E74A0B0E24E7F8A100F0B39C /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E74A0B2024E82CD600F0B39C /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				E74A0B1124E7F8A900F0B39C /* Assets.xcassets */,
 				E74A0B1324E7F8A900F0B39C /* LaunchScreen.storyboard */,
 				E74A0B1624E7F8A900F0B39C /* Info.plist */,
 			);
-			path = TopChartsApp;
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E74A0B2124E82D6600F0B39C /* SceneDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				E74A0B0A24E7F8A100F0B39C /* SceneDelegate.swift */,
+			);
+			path = SceneDelegate;
+			sourceTree = "<group>";
+		};
+		E74A0B2224E82D7600F0B39C /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E74A0B2324E82D9A00F0B39C /* Agreement */,
+				E7AC22E324E8541E00D37708 /* TopCharts */,
+				E7DD938724EC3777005B0401 /* Cell */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		E74A0B2324E82D9A00F0B39C /* Agreement */ = {
+			isa = PBXGroup;
+			children = (
+				E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */,
+				E74A0B0C24E7F8A100F0B39C /* AgreementViewController.swift */,
+			);
+			path = Agreement;
+			sourceTree = "<group>";
+		};
+		E7AC22E224E853F900D37708 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E74A0B2624E8365F00F0B39C /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E7AC22E324E8541E00D37708 /* TopCharts */ = {
+			isa = PBXGroup;
+			children = (
+				E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */,
+				E7DD938324EBF370005B0401 /* MediaProductViewController.swift */,
+			);
+			path = TopCharts;
+			sourceTree = "<group>";
+		};
+		E7AC22EC24E99B1600D37708 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E7AC22EA24E99B1000D37708 /* mediaProduct.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E7AC22EF24E99CF300D37708 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */,
+				E7AC22F024E99D8000D37708 /* Requests.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		E7DD938724EC3777005B0401 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E7DD938524EC3771005B0401 /* MediaProductTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +250,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E74A0B0D24E7F8A100F0B39C /* ViewController.swift in Sources */,
+				E7DD938624EC3771005B0401 /* MediaProductTableViewCell.swift in Sources */,
+				E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */,
+				E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */,
+				E74A0B0D24E7F8A100F0B39C /* AgreementViewController.swift in Sources */,
+				E7AC22F124E99D8000D37708 /* Requests.swift in Sources */,
+				E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */,
 				E74A0B0924E7F8A100F0B39C /* AppDelegate.swift in Sources */,
+				E7AC22EE24E99CEE00D37708 /* NetworkManager.swift in Sources */,
 				E74A0B0B24E7F8A100F0B39C /* SceneDelegate.swift in Sources */,
+				E7AC22E924E98A0800D37708 /* TopChartsTableViewController.swift in Sources */,
+				E74A0B2524E831F800F0B39C /* AgreementPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +406,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VH9RU7S6TL;
-				INFOPLIST_FILE = TopChartsApp/Info.plist;
+				INFOPLIST_FILE = TopChartsApp/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VH9RU7S6TL;
-				INFOPLIST_FILE = TopChartsApp/Info.plist;
+				INFOPLIST_FILE = TopChartsApp/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
