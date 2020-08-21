@@ -9,8 +9,8 @@
 import UIKit
 
 class MediaProductTableViewCell: UITableViewCell {
-    @IBOutlet var imageOfMedia: UIImageView!
     
+    @IBOutlet var imageOfMedia: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     
     func configure(_ imageView: UIImageView) {
@@ -20,19 +20,21 @@ class MediaProductTableViewCell: UITableViewCell {
     }
     
     func configure(with results: [Result]?, for index: Int, cell: MediaProductTableViewCell?) {
-           
-           
-           cell?.nameLabel?.text = results?[index].name
-           DispatchQueue.global().async {
-           guard let stringURL = results?[index].artworkUrl100 else { return }
-           guard let imageURL = URL(string: stringURL) else { return }
-           guard let imageData = try? Data(contentsOf: imageURL) else { return }
-           
-           DispatchQueue.main.async {
-               cell?.imageOfMedia?.image = UIImage(data: imageData)
-               
-           }
+        
+        cell?.backgroundColor = .opaqueSeparator
+        
+        cell?.nameLabel?.text = results?[index].name
+        DispatchQueue.global().async {
+            
+            guard let stringURL = results?[index].artworkUrl100 else { return }
+            guard let imageURL = URL(string: stringURL) else { return }
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            
+            DispatchQueue.main.async {
+                cell?.imageOfMedia?.image = UIImage(data: imageData)
+                
+            }
         }
-       }
+    }
 
 }

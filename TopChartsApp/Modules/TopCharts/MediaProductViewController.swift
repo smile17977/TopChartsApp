@@ -14,18 +14,45 @@ class MediaProductViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var artistNameLabel: UILabel!
     @IBOutlet var genresLabel: UILabel!
-    
-    var logoImage: UIImage!
-    var name: String!
-    var artistName: String!
-    var genres: String!
+    @IBOutlet var releaseDateLabel: UILabel!
     
     var result: Result!
+    var genres: [Genre]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = result.name
         
+        view.backgroundColor = .opaqueSeparator
+        
+        setupNavigationBar()
+        
+        setupLabels()
+        
+        setupImageView()
+        fetchImage()
+        
+    }
+    
+    func setupImageView() {
+        logoImageView.contentMode = .scaleAspectFill
+        logoImageView.layer.cornerRadius = 15
+        logoImageView.clipsToBounds = true
+    }
+    
+    func setupLabels() {
+        nameLabel.text = "* Name: \(result.name)"
+        artistNameLabel.text = "* Developer: \(result.artistName)"
+        
+        genres = result.genres
+        let separatedGenres = genres.compactMap({ (Genre) -> String in
+            Genre.name
+        })
+        genresLabel.text = "* Genres: \(separatedGenres.joined(separator: ", "))"
+        releaseDateLabel.text = "* Date of release: \(result.releaseDate)"
+        
+    }
+    
+    func fetchImage() {
         guard let stringURL = result.artworkUrl100 else { return }
         guard let imageURL = URL(string: stringURL) else { return }
         guard let imageData = try? Data(contentsOf: imageURL) else { return }
@@ -34,10 +61,12 @@ class MediaProductViewController: UIViewController {
             self.logoImageView.image = UIImage(data: imageData)
             
         }
-
-        // Do any additional setup after loading the view.
     }
     
+    func setupNavigationBar() {
+               title = result.name
+        
+    }
 
     /*
     // MARK: - Navigation

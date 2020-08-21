@@ -13,16 +13,21 @@ class TopChartsTableViewController: UITableViewController {
     
 
     var mediaProduct: MediaProduct?
+    var userName: String!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        setupNavigationBar()
+        
+        view.backgroundColor = .opaqueSeparator
         NetworkManager.shared.fetchData(from: Requests.mediaProjectURL) { (mediaProduct) in
             DispatchQueue.main.async {
                 self.mediaProduct = mediaProduct
                 self.tableView.reloadData()
-                print(self.mediaProduct?.feed.results ?? 0)
             }
         }
         
@@ -64,6 +69,16 @@ class TopChartsTableViewController: UITableViewController {
             
             
         }
+        
+    }
+    
+    
+    
+    func setupNavigationBar() {
+    
+        title = userName
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.backgroundColor = .opaqueSeparator
         
     }
 
