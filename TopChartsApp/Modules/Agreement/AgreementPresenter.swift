@@ -9,29 +9,33 @@
 import UIKit
 
 protocol AgreementPresenterProtocol {
+    init(view: AgreementViewControllerProtocol)
     
-
-    
-//    func pressCancel()
-//    func pressAgree()
+    func pressDisagree()
+    func pressAgree()
+    func moveToTheNextView()
     
 }
 
 class AgreementPresenter: AgreementPresenterProtocol {
     
-//    private unowned let view: AgreementViewControllerProtocol
-//
-//    required init(view: AgreementViewControllerProtocol) {
-//        self.view = view
-//    }
-//
-//    func pressCancel() {
-//      showAlert(with: "Are you sure?", and: "The app will be closed")
-//    }
-//
-//    func pressAgree() {
-        
-//    }
+    private unowned let view: AgreementViewControllerProtocol
+    
+    required init(view: AgreementViewControllerProtocol) {
+        self.view = view
+    }
+    
+    func pressDisagree() {
+        view.showAlert(with: "Are you sure?", and: "The app will be closed")
+    }
+    
+    func pressAgree() {
+        view.showEnterNameAlert(with: "Forgot write your name?", and: "Please enter your name")
+    }
+    
+    func moveToTheNextView() {
+        view.showHome()
+    }
     
 }
 

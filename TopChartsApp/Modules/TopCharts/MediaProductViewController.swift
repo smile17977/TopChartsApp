@@ -11,7 +11,6 @@ import UIKit
 class MediaProductViewController: UIViewController {
     
     @IBOutlet var logoImageView: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var artistNameLabel: UILabel!
     @IBOutlet var genresLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
@@ -40,7 +39,6 @@ class MediaProductViewController: UIViewController {
     }
     
     func setupLabels() {
-        nameLabel.text = "* Name: \(result.name)"
         artistNameLabel.text = "* Developer: \(result.artistName)"
         
         genres = result.genres
