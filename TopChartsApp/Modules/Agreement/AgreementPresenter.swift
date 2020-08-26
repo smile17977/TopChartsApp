@@ -19,6 +19,8 @@ protocol AgreementPresenterProtocol {
 
 class AgreementPresenter: AgreementPresenterProtocol {
     
+    
+    
     private unowned let view: AgreementViewControllerProtocol
     
     required init(view: AgreementViewControllerProtocol) {

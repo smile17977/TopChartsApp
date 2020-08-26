@@ -44,7 +44,6 @@ class AgreementViewController: UIViewController {
         configureButtons(for: actionButtons)
         
     }
-
     
     // MARK: IBActions
     
