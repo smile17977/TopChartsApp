@@ -8,28 +8,38 @@
 
 import UIKit
 
+protocol MediaProductViewControllerProtocol: class {
+    
+    func display(imageData: Data)
+    func startActivityIndicator()
+    func stopActivityIndicator()
+}
+
 class MediaProductViewController: UIViewController {
+    
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var artistNameLabel: UILabel!
     @IBOutlet var genresLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
     
+    var presenter: MediaProductPresenterProtocol!
+    
     var result: Result!
-    var genres: [Genre]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter = MediaProductPresenter(view: self, result: result)
+        
+        presenter.fetchImage()
+        
         view.backgroundColor = .opaqueSeparator
         
         setupNavigationBar()
-        
         setupLabels()
-        
         setupImageView()
-        fetchImage()
-        
     }
     
     func setupImageView() {
@@ -39,41 +49,30 @@ class MediaProductViewController: UIViewController {
     }
     
     func setupLabels() {
-        artistNameLabel.text = "* Developer: \(result.artistName)"
-        
-        genres = result.genres
-        let separatedGenres = genres.compactMap({ (Genre) -> String in
-            Genre.name
-        })
-        genresLabel.text = "* Genres: \(separatedGenres.joined(separator: ", "))"
-        releaseDateLabel.text = "* Date of release: \(result.releaseDate)"
-        
-    }
-    
-    func fetchImage() {
-        guard let stringURL = result.artworkUrl100 else { return }
-        guard let imageURL = URL(string: stringURL) else { return }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return }
-        
-        DispatchQueue.main.async {
-            self.logoImageView.image = UIImage(data: imageData)
-            
-        }
+        artistNameLabel.text = presenter.getArtistName()
+        genresLabel.text = presenter.getGenres()
+        releaseDateLabel.text = presenter.getDateRelease()
     }
     
     func setupNavigationBar() {
-               title = result.name
-        
+        title = presenter.getMediaName()
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension MediaProductViewController: MediaProductViewControllerProtocol {
+    
+    func display(imageData: Data) {
+        DispatchQueue.main.async {
+            self.logoImageView.image = UIImage(data: imageData)
+        }
     }
-    */
-
+    
+    func startActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+    }
 }

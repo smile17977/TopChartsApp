@@ -15,6 +15,7 @@
 		E74A0B1524E7F8A900F0B39C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E74A0B1324E7F8A900F0B39C /* LaunchScreen.storyboard */; };
 		E74A0B2524E831F800F0B39C /* AgreementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */; };
 		E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B2624E8365F00F0B39C /* Extensions.swift */; };
+		E780522224F8141700CA8593 /* MediaProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780522124F8141700CA8593 /* MediaProductCellPresenter.swift */; };
 		E7AC22E924E98A0800D37708 /* TopChartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */; };
 		E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22EA24E99B1000D37708 /* mediaProduct.swift */; };
 		E7AC22EE24E99CEE00D37708 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */; };
@@ -22,6 +23,7 @@
 		E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD938324EBF370005B0401 /* MediaProductViewController.swift */; };
 		E7DD939624EC76D2005B0401 /* MediaProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */; };
 		E7E213AA24F5738500AC3E78 /* TopChartsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E213A924F5738400AC3E78 /* TopChartsPresenter.swift */; };
+		E7E213AC24F650E000AC3E78 /* MediaProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E213AB24F650E000AC3E78 /* MediaProductPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,7 @@
 		E74A0B1624E7F8A900F0B39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementPresenter.swift; sourceTree = "<group>"; };
 		E74A0B2624E8365F00F0B39C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E780522124F8141700CA8593 /* MediaProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductCellPresenter.swift; sourceTree = "<group>"; };
 		E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartsTableViewController.swift; sourceTree = "<group>"; };
 		E7AC22EA24E99B1000D37708 /* mediaProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaProduct.swift; sourceTree = "<group>"; };
 		E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 		E7DD938324EBF370005B0401 /* MediaProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductViewController.swift; sourceTree = "<group>"; };
 		E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductTableViewCell.swift; sourceTree = "<group>"; };
 		E7E213A924F5738400AC3E78 /* TopChartsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartsPresenter.swift; sourceTree = "<group>"; };
+		E7E213AB24F650E000AC3E78 /* MediaProductPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */,
+				E780522124F8141700CA8593 /* MediaProductCellPresenter.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 		E7E213A824F56CBB00AC3E78 /* MediaProduct */ = {
 			isa = PBXGroup;
 			children = (
+				E7E213AB24F650E000AC3E78 /* MediaProductPresenter.swift */,
 				E7DD938324EBF370005B0401 /* MediaProductViewController.swift */,
 			);
 			path = MediaProduct;
@@ -262,9 +268,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7DD939624EC76D2005B0401 /* MediaProductTableViewCell.swift in Sources */,
+				E780522224F8141700CA8593 /* MediaProductCellPresenter.swift in Sources */,
 				E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */,
 				E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */,
 				E7E213AA24F5738500AC3E78 /* TopChartsPresenter.swift in Sources */,
+				E7E213AC24F650E000AC3E78 /* MediaProductPresenter.swift in Sources */,
 				E74A0B0D24E7F8A100F0B39C /* AgreementViewController.swift in Sources */,
 				E7AC22F124E99D8000D37708 /* Requests.swift in Sources */,
 				E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */,

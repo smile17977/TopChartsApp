@@ -24,25 +24,28 @@ class AgreementViewController: UIViewController {
     @IBOutlet var enterYourNameLabel: UILabel!
     @IBOutlet var userNameTextField: UITextField!
     
+    @IBOutlet var agreementTextView: UITextView!
     // MARK: Properties
     
     private var presenter: AgreementPresenterProtocol!
+    
+    let layer = CAGradientLayer()
+     
 
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         presenter = AgreementPresenter.init(view: self)
         userNameTextField.delegate = self
         
-        view.backgroundColor = .lightGray
-        
+        setBackgroundGradient()
+        setAgreementTextView()
         configureTextField()
         configureEnterYourNameLabel()
         setLabel(for: helloUserLabel, "Hello, User", .blue, 20)
         configureButtons(for: actionButtons)
-        
     }
     
     // MARK: IBActions
@@ -62,6 +65,25 @@ class AgreementViewController: UIViewController {
     }
     
     // MARK: UI
+    
+    private func setBackgroundGradient () {
+        layer.frame = view.bounds
+        layer.colors = [UIColor.systemGray2.cgColor, UIColor.systemOrange.cgColor]
+        layer.startPoint = CGPoint(x: 1, y: 0.1)
+        layer.endPoint = CGPoint(x:0.9, y:0.9)
+        view.layer.insertSublayer(layer, at: 0)
+    }
+    
+    private func setAgreementTextView() {
+        
+        agreementTextView.font = UIFont(
+            name: "AppleSDGothicNeo-Regular",
+            size: 23)
+        agreementTextView.backgroundColor = UIColor.gray
+        agreementTextView.layer.cornerRadius = 10
+        agreementTextView.isEditable = false
+        
+    }
     
     private func setButton(for button: UIButton, _ title: String, _ titleColor: UIColor) {
         
@@ -102,6 +124,7 @@ class AgreementViewController: UIViewController {
         userNameTextField.enablesReturnKeyAutomatically = true
         userNameTextField.autocorrectionType = .no
         userNameTextField.clearButtonMode = .whileEditing
+        userNameTextField.backgroundColor = .gray
     }
     
     private func nameEntered() {

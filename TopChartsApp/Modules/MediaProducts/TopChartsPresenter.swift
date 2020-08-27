@@ -13,15 +13,23 @@ protocol TopChartsPresenterProtocol {
     
     init(view: TopChartsTableViewControllerProtocol)
     
+    var results: [Result] { get }
+    
     func getData()
     func getMediaCount() -> Int
     func configurateCell(_ cell: MediaProductTableViewCellProtocol, index: Int)
+
 }
 
 class TopChartsPresenter: TopChartsPresenterProtocol {
-    
+        
     private unowned let view: TopChartsTableViewControllerProtocol
-    private var mediaProduct: MediaProduct?
+    
+    var mediaProduct: MediaProduct?
+    
+    var results: [Result] {
+        mediaProduct?.feed.results ?? []
+    }
     
     required init(view: TopChartsTableViewControllerProtocol) {
         self.view = view
@@ -35,6 +43,8 @@ class TopChartsPresenter: TopChartsPresenterProtocol {
             }
         }
     }
+    
+    
     
     func getMediaCount() -> Int {
         return mediaProduct?.feed.results.count ?? 0

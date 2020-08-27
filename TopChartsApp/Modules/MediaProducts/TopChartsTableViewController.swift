@@ -23,8 +23,9 @@ class TopChartsTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    private var mediaProduct: MediaProduct?
-    private var userName: String!
+    var userName: String!
+    
+    private var mediaProduct: MediaProduct!
     
     private var presenter: TopChartsPresenterProtocol!
     
@@ -32,11 +33,10 @@ class TopChartsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         presenter = TopChartsPresenter.init(view: self)
         presenter.getData()
-        
         setupNavigationBar()
+        
         view.backgroundColor = .opaqueSeparator
     }
 
@@ -52,13 +52,17 @@ class TopChartsTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
+    
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
         let mediaProductVC = segue.destination as! MediaProductViewController
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            mediaProductVC.result = mediaProduct?.feed.results[indexPath.row]
+//            mediaProductVC.result = mediaProduct?.feed.results[indexPath.row]
+            mediaProductVC.result = presenter.results[indexPath.row]
         }
     }
     
