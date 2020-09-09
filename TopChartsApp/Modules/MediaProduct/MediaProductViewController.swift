@@ -13,10 +13,13 @@ protocol MediaProductViewControllerProtocol: class {
     func display(imageData: Data)
     func startActivityIndicator()
     func stopActivityIndicator()
+    func setupLabels()
 }
 
 class MediaProductViewController: UIViewController {
     
+    
+    @IBOutlet var allView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var logoImageView: UIImageView!
@@ -31,15 +34,19 @@ class MediaProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupViews()
+        
         presenter = MediaProductPresenter(view: self, result: result)
         
-        presenter.fetchImage()
+        presenter.fetchMediaProduct()
         
         view.backgroundColor = .opaqueSeparator
         
         setupNavigationBar()
-        setupLabels()
+
+        
         setupImageView()
+        setBackgroundGradient()
     }
     
     func setupImageView() {
@@ -48,11 +55,12 @@ class MediaProductViewController: UIViewController {
         logoImageView.clipsToBounds = true
     }
     
-    func setupLabels() {
-        artistNameLabel.text = presenter.getArtistName()
-        genresLabel.text = presenter.getGenres()
-        releaseDateLabel.text = presenter.getDateRelease()
+    func setupViews() {
+        activityIndicator.center = self.view.center
+        activityIndicator.isHidden = false
+        allView.isHidden = true
     }
+    
     
     func setupNavigationBar() {
         title = presenter.getMediaName()
@@ -61,6 +69,18 @@ class MediaProductViewController: UIViewController {
 
 extension MediaProductViewController: MediaProductViewControllerProtocol {
     
+    func setupLabels() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            self.artistNameLabel.text = self.presenter.getArtistName()
+            self.genresLabel.text = self.presenter.getGenres()
+            self.releaseDateLabel.text = self.presenter.getDateRelease()
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
+            self.allView.isHidden = false
+        }
+    }
+    
     func display(imageData: Data) {
         DispatchQueue.main.async {
             self.logoImageView.image = UIImage(data: imageData)
@@ -68,11 +88,14 @@ extension MediaProductViewController: MediaProductViewControllerProtocol {
     }
     
     func startActivityIndicator() {
-        activityIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
     }
     
     func stopActivityIndicator() {
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
     }
 }

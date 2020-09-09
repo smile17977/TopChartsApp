@@ -24,6 +24,7 @@ class TopChartsTableViewController: UITableViewController {
     // MARK: Properties
     
     var userName: String!
+    var urlString: String!
     
     private var mediaProduct: MediaProduct!
     
@@ -33,9 +34,11 @@ class TopChartsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter = TopChartsPresenter.init(view: self)
-        presenter.getData()
+        presenter.getData(from: urlString)
         setupNavigationBar()
+        
         
         view.backgroundColor = .opaqueSeparator
     }
@@ -52,16 +55,13 @@ class TopChartsTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: - UITableViewDelegate
-    
-    
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetails" {
         let mediaProductVC = segue.destination as! MediaProductViewController
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-//            mediaProductVC.result = mediaProduct?.feed.results[indexPath.row]
+            
             mediaProductVC.result = presenter.results[indexPath.row]
         }
     }
@@ -72,6 +72,18 @@ class TopChartsTableViewController: UITableViewController {
         title = userName
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = .opaqueSeparator
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        showAlert(with: "ew", and: "wef") { (alert) in
+            let okAction = UIAlertAction(title: "Да",
+                                         style: .default) { _ in
+                                            self.dismiss(animated: true)
+            }
+            alert.addAction(okAction)
+        }
+        
+        
     }
     
 }
@@ -95,3 +107,4 @@ extension TopChartsTableViewController: TopChartsTableViewControllerProtocol {
         }
     }
 }
+

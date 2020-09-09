@@ -15,16 +15,16 @@ protocol TopChartsPresenterProtocol {
     
     var results: [Result] { get }
     
-    func getData()
+    func getData(from url: String)
     func getMediaCount() -> Int
     func configurateCell(_ cell: MediaProductTableViewCellProtocol, index: Int)
-
 }
 
 class TopChartsPresenter: TopChartsPresenterProtocol {
         
     private unowned let view: TopChartsTableViewControllerProtocol
     
+//    var urlString = Requests.shared.configureURL()
     var mediaProduct: MediaProduct?
     
     var results: [Result] {
@@ -35,16 +35,14 @@ class TopChartsPresenter: TopChartsPresenterProtocol {
         self.view = view
     }
     
-    func getData() {
-        NetworkManager.shared.fetchData(from: Requests.mediaProjectURL) { (mediaProduct) in
+    func getData(from url: String) {
+        NetworkManager.shared.fetchData(from: url) { (mediaProduct) in
             DispatchQueue.main.async {
                 self.mediaProduct = mediaProduct
                 self.view.reloadTableView()
             }
         }
     }
-    
-    
     
     func getMediaCount() -> Int {
         return mediaProduct?.feed.results.count ?? 0

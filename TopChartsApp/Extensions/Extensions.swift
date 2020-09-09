@@ -9,34 +9,26 @@
 import UIKit
 
 extension UIStoryboard {
-    
     enum Storyboard {
-    
     case main
     case home
-        
     }
 }
-
 
 extension UIViewController {
     
      func showAlert(with title: String,
-                           and message: String) {
+                    and message: String,
+                    with complition: @escaping (UIAlertController) -> Void) {
         let alert = UIAlertController(
             title: title,
             message: message,
             preferredStyle: .alert
         )
         
-        let noAction = UIAlertAction(title: "No", style: .default)
-        let okAction = UIAlertAction(title: "Yes",
-                                     style: .default) { _ in
-                                        exit(0)
-        }
-        
+        let noAction = UIAlertAction(title: "Нет", style: .default)
         alert.addAction(noAction)
-        alert.addAction(okAction)
+        complition(alert)
         
         present(alert, animated: true)
     }
@@ -48,7 +40,7 @@ extension UIViewController {
             message: message,
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "Ok",
+        let okAction = UIAlertAction(title: "Ок",
                                      style: .default) { _ in
         }
         
@@ -67,15 +59,12 @@ extension AgreementViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     
         if let _ = Double(userNameTextField.text!) {
-           showEnterNameAlert(with: "Wrong format", and: "Please enter your name")
+           showEnterNameAlert(with: "Некорректный формат", and: "Пожалуйста введите своё имя")
             userNameTextField.text = nil
         } else {
-        helloUserLabel.text = "Hello, \(userNameTextField.text ?? "")"
+        helloUserLabel.text = "Привет, \(userNameTextField.text ?? "")!"
         userNameTextField.resignFirstResponder()
         }
        return true
     }
-    
 }
-
-

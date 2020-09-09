@@ -10,5 +10,12 @@ import Foundation
 
 struct Requests {
     
-    static let mediaProjectURL = "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-apps-we-love/all/100/explicit.json"
+    static let shared = Requests()
+    
+    private init() {}
+
+    func configureURL(country: String, channel: String, carrier: String, quantity: String) -> String {
+        let mediaProductURL = "https://rss.itunes.apple.com/api/v1/\(country)/\(carrier)/\(channel)/all/\(quantity)/explicit.json"
+        return mediaProductURL
+    }
 }

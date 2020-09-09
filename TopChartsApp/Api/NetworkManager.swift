@@ -13,12 +13,10 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
-
-
+    
     func fetchData(from url: String, with complition: @escaping (MediaProduct) -> Void) {
         
-        guard let stringURL = URL(string: Requests.mediaProjectURL) else { return }
-        
+        guard let stringURL = URL(string: url) else { return }
         URLSession.shared.dataTask(with: stringURL) { (data, responce, error) in
             if let error = error { print(error); return }
             guard let data = data else { return }
@@ -31,12 +29,12 @@ class NetworkManager {
             } catch let error {
                 print(error.localizedDescription)
             }
-    
+            
         }.resume()
         
     }
     
-        
-}
     
+}
+
 

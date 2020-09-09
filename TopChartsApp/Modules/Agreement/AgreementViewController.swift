@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BaseViewControllerProtocol: class {
-    func showAlert(with title: String, and message: String)
+    func showAlert(with title: String, and message: String, with complition: @escaping (UIAlertController) -> Void)
     func showEnterNameAlert(with title: String, and message: String)
 }
 
@@ -28,9 +28,6 @@ class AgreementViewController: UIViewController {
     // MARK: Properties
     
     private var presenter: AgreementPresenterProtocol!
-    
-    let layer = CAGradientLayer()
-     
 
     // MARK: Lifecycle
     
@@ -43,8 +40,7 @@ class AgreementViewController: UIViewController {
         setBackgroundGradient()
         setAgreementTextView()
         configureTextField()
-        configureEnterYourNameLabel()
-        setLabel(for: helloUserLabel, "Hello, User", .blue, 20)
+        setLabel(for: helloUserLabel, "Привет! Назови себя", .blue, 20)
         configureButtons(for: actionButtons)
     }
     
@@ -55,8 +51,7 @@ class AgreementViewController: UIViewController {
         if sender.tag == 0 {
             presenter.pressDisagree()
         } else {
-            
-            if helloUserLabel.text == "Hello, User" {
+            if helloUserLabel.text == "Привет! Назови себя" {
                 presenter.pressAgree()
             } else {
                 presenter.moveToTheNextView()
@@ -65,14 +60,6 @@ class AgreementViewController: UIViewController {
     }
     
     // MARK: UI
-    
-    private func setBackgroundGradient () {
-        layer.frame = view.bounds
-        layer.colors = [UIColor.systemGray2.cgColor, UIColor.systemOrange.cgColor]
-        layer.startPoint = CGPoint(x: 1, y: 0.1)
-        layer.endPoint = CGPoint(x:0.9, y:0.9)
-        view.layer.insertSublayer(layer, at: 0)
-    }
     
     private func setAgreementTextView() {
         
@@ -97,9 +84,9 @@ class AgreementViewController: UIViewController {
         
         for button in buttons {
             if button.tag == 0 {
-                setButton(for: button, "I disagree", .white)
+                setButton(for: button, "Не согласен", .white)
             } else {
-                setButton(for: button, "I agree", .white)
+                setButton(for: button, "Согласен", .white)
             }
         }
     }
@@ -109,14 +96,7 @@ class AgreementViewController: UIViewController {
         label.text = text
         label.textColor = textColor
         label.font = label.font.withSize(fontSize)
-        label.text = "Hello, User"
     }
-    
-    private func configureEnterYourNameLabel() {
-        
-        enterYourNameLabel.text = "Пожалуйста, назовите себя"
-    }
-    
     
     private func configureTextField() {
         
@@ -136,16 +116,18 @@ class AgreementViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "showHome" {
-            let topChartsVC = segue.destination as! UINavigationController
-            let top = topChartsVC.topViewController as! TopChartsTableViewController
-            top.userName = helloUserLabel.text
+        if segue.identifier == "showSettings" {
+            let settingsVC = segue.destination as! SettingsViewController
+            settingsVC.userName = helloUserLabel.text
+//            let topChartsVC = segue.destination as! UINavigationController
+//            let top = topChartsVC.topViewController as! TopChartsTableViewController
+//            top.userName = helloUserLabel.text
         }
     }
     
     @IBAction func unwindSegueToMainViewController(for unwindSegue: UIStoryboardSegue) {
-        
-        setLabel(for: helloUserLabel, "Hello, User ")
+
+        setLabel(for: helloUserLabel, "Привет! Назови себя")
         userNameTextField.text = nil
     }
 }
@@ -153,8 +135,21 @@ class AgreementViewController: UIViewController {
 extension AgreementViewController: AgreementViewControllerProtocol {
     
     func showHome() {
-        performSegue(withIdentifier: "showHome", sender: nil)
+        performSegue(withIdentifier: "showSettings", sender: nil)
     }
+}
+
+extension UIViewController {
+    
+    func setBackgroundGradient () {
+        let layer = CAGradientLayer()
+        layer.frame = view.bounds
+        layer.colors = [UIColor.systemGray2.cgColor, UIColor.systemOrange.cgColor]
+        layer.startPoint = CGPoint(x: 1, y: 0.1)
+        layer.endPoint = CGPoint(x:0.9, y:0.9)
+        view.layer.insertSublayer(layer, at: 0)
+    }
+    
 }
 
 

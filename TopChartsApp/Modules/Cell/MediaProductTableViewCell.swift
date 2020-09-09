@@ -19,8 +19,6 @@ class MediaProductTableViewCell: UITableViewCell {
     
     @IBOutlet var imageOfMedia: UIImageView!
     @IBOutlet var nameLabel: UILabel!
-    
-
 }
 
 extension MediaProductTableViewCell: MediaProductTableViewCellProtocol {
@@ -30,12 +28,11 @@ extension MediaProductTableViewCell: MediaProductTableViewCellProtocol {
     }
     
     func display(stringURL: String) {
-        guard let imageURL = URL(string: stringURL) else { return }
-        guard let imageData = try? Data(contentsOf: imageURL) else { return }
+        
+        guard let imageData = ImageManager.shared.getImage(from: stringURL) else { return }
         
         DispatchQueue.main.async {
             self.imageOfMedia?.image = UIImage(data: imageData)
-            
         }
     }
     
@@ -44,15 +41,11 @@ extension MediaProductTableViewCell: MediaProductTableViewCellProtocol {
     }
     
     func configure(with results: [Result]?, for index: Int, cell: MediaProductTableViewCell?) {
-        
-//        cell?.backgroundColor = .opaqueSeparator
-        
+    
         cell?.nameLabel?.text = results?[index].name
         DispatchQueue.global().async {
             
-            guard let stringURL = results?[index].artworkUrl100 else { return }
-            guard let imageURL = URL(string: stringURL) else { return }
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            guard let imageData = ImageManager.shared.getImage(from: results?[index].artworkUrl100) else { return }
             
             DispatchQueue.main.async {
                 cell?.imageOfMedia?.image = UIImage(data: imageData)

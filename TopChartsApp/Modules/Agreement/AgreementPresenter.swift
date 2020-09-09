@@ -28,11 +28,17 @@ class AgreementPresenter: AgreementPresenterProtocol {
     }
     
     func pressDisagree() {
-        view.showAlert(with: "Are you sure?", and: "The app will be closed")
+        view.showAlert(with: "Вы уверены?", and: "Приложение будет закрыто") { (alert) in
+            let okAction = UIAlertAction(title: "Да",
+                                         style: .default) { _ in
+                                            exit(0)
+            }
+            alert.addAction(okAction)
+        }
     }
     
     func pressAgree() {
-        view.showEnterNameAlert(with: "Forgot write your name?", and: "Please enter your name")
+        view.showEnterNameAlert(with: "Вы забыли заполнить поле имени", and: "Пожалуйста введите своё имя")
     }
     
     func moveToTheNextView() {

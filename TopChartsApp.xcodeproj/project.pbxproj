@@ -15,11 +15,15 @@
 		E74A0B1524E7F8A900F0B39C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E74A0B1324E7F8A900F0B39C /* LaunchScreen.storyboard */; };
 		E74A0B2524E831F800F0B39C /* AgreementPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */; };
 		E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A0B2624E8365F00F0B39C /* Extensions.swift */; };
+		E76B9B1124F9553D00FE5A1A /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76B9B1024F9553D00FE5A1A /* ImageManager.swift */; };
 		E780522224F8141700CA8593 /* MediaProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E780522124F8141700CA8593 /* MediaProductCellPresenter.swift */; };
+		E794F53125079377008EF1B1 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E794F53025079377008EF1B1 /* SettingsPresenter.swift */; };
+		E796046324FD5CBF0038AD2F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796046224FD5CBF0038AD2F /* SettingsViewController.swift */; };
 		E7AC22E924E98A0800D37708 /* TopChartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */; };
 		E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22EA24E99B1000D37708 /* mediaProduct.swift */; };
 		E7AC22EE24E99CEE00D37708 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */; };
 		E7AC22F124E99D8000D37708 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC22F024E99D8000D37708 /* Requests.swift */; };
+		E7CA57CE24FEB32D005EE48C /* JsonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CA57CD24FEB32C005EE48C /* JsonGenerator.swift */; };
 		E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD938324EBF370005B0401 /* MediaProductViewController.swift */; };
 		E7DD939624EC76D2005B0401 /* MediaProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */; };
 		E7E213AA24F5738500AC3E78 /* TopChartsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E213A924F5738400AC3E78 /* TopChartsPresenter.swift */; };
@@ -37,11 +41,15 @@
 		E74A0B1624E7F8A900F0B39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E74A0B2424E831F800F0B39C /* AgreementPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementPresenter.swift; sourceTree = "<group>"; };
 		E74A0B2624E8365F00F0B39C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E76B9B1024F9553D00FE5A1A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		E780522124F8141700CA8593 /* MediaProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductCellPresenter.swift; sourceTree = "<group>"; };
+		E794F53025079377008EF1B1 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		E796046224FD5CBF0038AD2F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E7AC22E824E98A0800D37708 /* TopChartsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartsTableViewController.swift; sourceTree = "<group>"; };
 		E7AC22EA24E99B1000D37708 /* mediaProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaProduct.swift; sourceTree = "<group>"; };
 		E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E7AC22F024E99D8000D37708 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		E7CA57CD24FEB32C005EE48C /* JsonGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonGenerator.swift; sourceTree = "<group>"; };
 		E7DD938324EBF370005B0401 /* MediaProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductViewController.swift; sourceTree = "<group>"; };
 		E7DD939524EC76D2005B0401 /* MediaProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaProductTableViewCell.swift; sourceTree = "<group>"; };
 		E7E213A924F5738400AC3E78 /* TopChartsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartsPresenter.swift; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 		E74A0B2224E82D7600F0B39C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E792B1DC2508E69900AB1D41 /* Settings */,
 				E7E213A824F56CBB00AC3E78 /* MediaProduct */,
 				E7AC22E324E8541E00D37708 /* MediaProducts */,
 				E74A0B2324E82D9A00F0B39C /* Agreement */,
@@ -142,6 +151,15 @@
 				E74A0B0C24E7F8A100F0B39C /* AgreementViewController.swift */,
 			);
 			path = Agreement;
+			sourceTree = "<group>";
+		};
+		E792B1DC2508E69900AB1D41 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E794F53025079377008EF1B1 /* SettingsPresenter.swift */,
+				E796046224FD5CBF0038AD2F /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		E7AC22E224E853F900D37708 /* Extensions */ = {
@@ -173,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				E7AC22ED24E99CEE00D37708 /* NetworkManager.swift */,
+				E76B9B1024F9553D00FE5A1A /* ImageManager.swift */,
+				E7CA57CD24FEB32C005EE48C /* JsonGenerator.swift */,
 				E7AC22F024E99D8000D37708 /* Requests.swift */,
 			);
 			path = Api;
@@ -270,9 +290,13 @@
 				E7DD939624EC76D2005B0401 /* MediaProductTableViewCell.swift in Sources */,
 				E780522224F8141700CA8593 /* MediaProductCellPresenter.swift in Sources */,
 				E7AC22EB24E99B1000D37708 /* mediaProduct.swift in Sources */,
+				E7CA57CE24FEB32D005EE48C /* JsonGenerator.swift in Sources */,
 				E74A0B2724E8365F00F0B39C /* Extensions.swift in Sources */,
+				E794F53125079377008EF1B1 /* SettingsPresenter.swift in Sources */,
 				E7E213AA24F5738500AC3E78 /* TopChartsPresenter.swift in Sources */,
 				E7E213AC24F650E000AC3E78 /* MediaProductPresenter.swift in Sources */,
+				E76B9B1124F9553D00FE5A1A /* ImageManager.swift in Sources */,
+				E796046324FD5CBF0038AD2F /* SettingsViewController.swift in Sources */,
 				E74A0B0D24E7F8A100F0B39C /* AgreementViewController.swift in Sources */,
 				E7AC22F124E99D8000D37708 /* Requests.swift in Sources */,
 				E7DD938424EBF370005B0401 /* MediaProductViewController.swift in Sources */,
