@@ -23,6 +23,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var quantityPicker: UIPickerView!
     
     @IBOutlet var showTopChartsButton: UIButton!
+    @IBOutlet var defaultPickersButton: UIButton!
     
     // MARK: Properties
     var requests = Requests.shared
@@ -42,10 +43,10 @@ class SettingsViewController: UIViewController {
         
         presenter = SettingsPresenter.init(view: self)
         channelsByCarriers = presenter.channels
-        
+        view.setGradientBackground(colorOne: Colors.darkGreen, colorTwo: Colors.lightGreen)
         setDelegatesForPickerViews()
-        setBackgroundGradient()
-        configureShowButton(for: showTopChartsButton, title: "Показать топ чарты", titleColor: .white)
+        configureButton(for: showTopChartsButton, title: "Показать", titleColor: .white)
+        configureButton(for: defaultPickersButton, title: "Сбросить", titleColor: .white)
     }
     
     func setDelegatesForPickerViews() {
@@ -56,11 +57,11 @@ class SettingsViewController: UIViewController {
         quantityPicker.delegate = self
     }
     
-    func configureShowButton(for button: UIButton, title: String, titleColor: UIColor) {
+    func configureButton(for button: UIButton, title: String, titleColor: UIColor) {
         
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
-        button.backgroundColor = .gray
+        button.backgroundColor = UIColor(red: 76.0/255.0, green: 125.0/255.0, blue: 50.0/255.0, alpha: 0.5)
         button.layer.cornerRadius = 10
     }
     
@@ -84,7 +85,16 @@ class SettingsViewController: UIViewController {
     
      @IBAction func unwindSegueToSettingsViewController(for unwindSegue: UIStoryboardSegue) {
         }
+    
+    @IBAction func defaultPickersButtonPressed(_ sender: Any) {
+        mediaProductPicker.selectRow(0, inComponent: 0, animated: true)
+        countryPicker.selectRow(0, inComponent: 0, animated: true)
+        quantityPicker.selectRow(0, inComponent: 0, animated: true)
+        typeOfChanelPicker.selectRow(0, inComponent: 0, animated: true)
+    }
 }
+
+   
 
 // MARK: UIPickerViewDataSource
 extension SettingsViewController: UIPickerViewDataSource  {
@@ -139,7 +149,7 @@ extension SettingsViewController: UIPickerViewDelegate {
         }
         
         let attrString = NSAttributedString(string: title,
-                                            attributes: [.foregroundColor:UIColor.yellow])
+                                            attributes: [.foregroundColor:Colors.orange])
         return attrString
     }
     

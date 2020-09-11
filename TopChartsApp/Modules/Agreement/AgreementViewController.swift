@@ -21,7 +21,6 @@ class AgreementViewController: UIViewController {
 
     @IBOutlet var actionButtons: [UIButton]!
     @IBOutlet var helloUserLabel: UILabel!
-    @IBOutlet var enterYourNameLabel: UILabel!
     @IBOutlet var userNameTextField: UITextField!
     
     @IBOutlet var agreementTextView: UITextView!
@@ -37,10 +36,14 @@ class AgreementViewController: UIViewController {
         presenter = AgreementPresenter.init(view: self)
         userNameTextField.delegate = self
         
-        setBackgroundGradient()
+        view.setGradientBackground(colorOne: Colors.darkGreen,
+                                   colorTwo: Colors.lightGreen)
+        setLabel(for: helloUserLabel,
+                 "Привет! Назови себя",
+                 Colors.orange, 20)
         setAgreementTextView()
+        
         configureTextField()
-        setLabel(for: helloUserLabel, "Привет! Назови себя", .blue, 20)
         configureButtons(for: actionButtons)
     }
     
@@ -66,7 +69,10 @@ class AgreementViewController: UIViewController {
         agreementTextView.font = UIFont(
             name: "AppleSDGothicNeo-Regular",
             size: 23)
-        agreementTextView.backgroundColor = UIColor.gray
+        agreementTextView.backgroundColor = UIColor(red: 23.0/255.0,
+                                                    green: 61.0/255.0,
+                                                    blue: 28.0/255.0,
+                                                    alpha: 0.3)
         agreementTextView.layer.cornerRadius = 10
         agreementTextView.isEditable = false
         
@@ -74,10 +80,13 @@ class AgreementViewController: UIViewController {
     
     private func setButton(for button: UIButton, _ title: String, _ titleColor: UIColor) {
         
+        button.layer.cornerRadius = 10
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
-        button.backgroundColor = .gray
-        button.layer.cornerRadius = 10
+        button.backgroundColor = UIColor(red: 76.0/255.0,
+                                         green: 125.0/255.0,
+                                         blue: 50.0/255.0,
+                                         alpha: 0.5)
     }
     
     private func configureButtons(for buttons: [UIButton]) {
@@ -104,12 +113,10 @@ class AgreementViewController: UIViewController {
         userNameTextField.enablesReturnKeyAutomatically = true
         userNameTextField.autocorrectionType = .no
         userNameTextField.clearButtonMode = .whileEditing
-        userNameTextField.backgroundColor = .gray
-    }
-    
-    private func nameEntered() {
-        
-        userNameTextField.text = enterYourNameLabel.text
+        userNameTextField.backgroundColor = UIColor(red: 76.0/255.0,
+                                                    green: 125.0/255.0,
+                                                    blue: 50.0/255.0,
+                                                    alpha: 0.5)
     }
     
     // MARK: Navigation
@@ -119,9 +126,6 @@ class AgreementViewController: UIViewController {
         if segue.identifier == "showSettings" {
             let settingsVC = segue.destination as! SettingsViewController
             settingsVC.userName = helloUserLabel.text
-//            let topChartsVC = segue.destination as! UINavigationController
-//            let top = topChartsVC.topViewController as! TopChartsTableViewController
-//            top.userName = helloUserLabel.text
         }
     }
     
@@ -137,19 +141,6 @@ extension AgreementViewController: AgreementViewControllerProtocol {
     func showHome() {
         performSegue(withIdentifier: "showSettings", sender: nil)
     }
-}
-
-extension UIViewController {
-    
-    func setBackgroundGradient () {
-        let layer = CAGradientLayer()
-        layer.frame = view.bounds
-        layer.colors = [UIColor.systemGray2.cgColor, UIColor.systemOrange.cgColor]
-        layer.startPoint = CGPoint(x: 1, y: 0.1)
-        layer.endPoint = CGPoint(x:0.9, y:0.9)
-        view.layer.insertSublayer(layer, at: 0)
-    }
-    
 }
 
 

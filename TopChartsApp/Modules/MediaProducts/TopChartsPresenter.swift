@@ -17,14 +17,14 @@ protocol TopChartsPresenterProtocol {
     
     func getData(from url: String)
     func getMediaCount() -> Int
-    func configurateCell(_ cell: MediaProductTableViewCellProtocol, index: Int)
+    
+    func cellPresenter(for indexPath: IndexPath, for view: MediaProductTableViewCellProtocol ) -> MediaProductTableViewCellPresenterPorotocol?
 }
 
 class TopChartsPresenter: TopChartsPresenterProtocol {
         
     private unowned let view: TopChartsTableViewControllerProtocol
     
-//    var urlString = Requests.shared.configureURL()
     var mediaProduct: MediaProduct?
     
     var results: [Result] {
@@ -48,15 +48,12 @@ class TopChartsPresenter: TopChartsPresenterProtocol {
         return mediaProduct?.feed.results.count ?? 0
     }
     
-    func configurateCell(_ cell: MediaProductTableViewCellProtocol, index: Int) {
-        self.view.startActivityIndicator()
-        DispatchQueue.global().async {
-            DispatchQueue.main.async {
-                cell.display(name: self.mediaProduct?.feed.results[index].name ?? "")
-                cell.cellColor(color: .opaqueSeparator)
-                self.view.stopActivityIndicator()
-            }
-            cell.display(stringURL: self.mediaProduct?.feed.results[index].artworkUrl100 ?? "")
-        }
+    func cellPresenter(for indexPath: IndexPath,
+                       for viewCell: MediaProductTableViewCellProtocol ) -> MediaProductTableViewCellPresenterPorotocol? {
+        viewCell.cellColor(color: Colors.darkGreenCell)
+        let result = results[indexPath.row]
+        return MediaProductTableViewCellPresenter(result: result,
+                                                  viewCell: viewCell)
     }
+    
 }

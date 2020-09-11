@@ -11,16 +11,15 @@ import UIKit
 protocol MediaProductViewControllerProtocol: class {
     
     func display(imageData: Data)
-    func startActivityIndicator()
-    func stopActivityIndicator()
-    func setupLabels()
+    func setupLabel(for label: UILabel, with info: String)
+    func setupImageView()
+    func setupNavigationBar(name: String)
+    func displayImage(for image: UIImage)
 }
 
 class MediaProductViewController: UIViewController {
     
-    
     @IBOutlet var allView: UIView!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var artistNameLabel: UILabel!
@@ -34,19 +33,32 @@ class MediaProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViews()
-        
         presenter = MediaProductPresenter(view: self, result: result)
         
-        presenter.fetchMediaProduct()
+        presenter.getImage()
         
-        view.backgroundColor = .opaqueSeparator
-        
-        setupNavigationBar()
+        setupLabel(for: artistNameLabel, with: presenter.getArtistName())
+        setupLabel(for: genresLabel, with: presenter.getGenres())
+        setupLabel(for: releaseDateLabel, with: presenter.getDateRelease())
 
-        
-        setupImageView()
-        setBackgroundGradient()
+        setupNavigationBar(name: presenter.getMediaName())
+        view.setGradientBackground(colorOne: Colors.darkGreen,
+                                   colorTwo: Colors.lightGreen)
+    }
+}
+
+extension MediaProductViewController: MediaProductViewControllerProtocol {
+    
+    func setupLabel(for label: UILabel, with info: String) {
+        label.text = info
+        label.font = UIFont(name: "AppleSDGothicNeo-Regular",
+                            size: 20)
+        label.backgroundColor = UIColor(red: 76.0/255.0,
+                                        green: 125.0/255.0,
+                                        blue: 50.0/255.0,
+                                        alpha: 0.5)
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 7
     }
     
     func setupImageView() {
@@ -55,47 +67,15 @@ class MediaProductViewController: UIViewController {
         logoImageView.clipsToBounds = true
     }
     
-    func setupViews() {
-        activityIndicator.center = self.view.center
-        activityIndicator.isHidden = false
-        allView.isHidden = true
-    }
-    
-    
-    func setupNavigationBar() {
-        title = presenter.getMediaName()
-    }
-}
-
-extension MediaProductViewController: MediaProductViewControllerProtocol {
-    
-    func setupLabels() {
-        DispatchQueue.main.async {
-            self.activityIndicator.startAnimating()
-            self.artistNameLabel.text = self.presenter.getArtistName()
-            self.genresLabel.text = self.presenter.getGenres()
-            self.releaseDateLabel.text = self.presenter.getDateRelease()
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.isHidden = true
-            self.allView.isHidden = false
-        }
+    func setupNavigationBar(name: String) {
+        title = name
     }
     
     func display(imageData: Data) {
-        DispatchQueue.main.async {
-            self.logoImageView.image = UIImage(data: imageData)
-        }
+        logoImageView.image = UIImage(data: imageData)
     }
     
-    func startActivityIndicator() {
-        DispatchQueue.main.async {
-            self.activityIndicator.startAnimating()
-        }
-    }
-    
-    func stopActivityIndicator() {
-        DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
-        }
+    func displayImage(for image: UIImage) {
+        logoImageView.image = image
     }
 }

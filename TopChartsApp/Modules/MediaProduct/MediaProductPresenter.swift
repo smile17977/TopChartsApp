@@ -11,7 +11,7 @@ import Foundation
 protocol MediaProductPresenterProtocol {
     init(view: MediaProductViewControllerProtocol, result: Result)
     
-    func fetchMediaProduct()
+    func getImage()
     func getMediaName() -> String
     func getGenres() -> String
     func getArtistName() -> String
@@ -29,15 +29,11 @@ class MediaProductPresenter: MediaProductPresenterProtocol {
         self.result = result
     }
     
-    func fetchMediaProduct() {
-        self.view.startActivityIndicator()
-        DispatchQueue.global().async{
-            guard let imageData = ImageManager.shared.getImage(from: self.result.artworkUrl100) else { return }
-            
-            self.view.display(imageData: imageData)
-            self.view.setupLabels()
-        }
-        
+    func getImage() {
+        ImageManager.shared.fetchImage(stringURL: result.artworkUrl100!, completion: { (image) in
+            self.view.displayImage(for: image)
+        })
+        view.setupImageView()
     }
     
     func getMediaName() -> String {
@@ -48,14 +44,14 @@ class MediaProductPresenter: MediaProductPresenterProtocol {
         let separatedGenres = result.genres.compactMap({ (Genre) -> String in
             Genre.name
         })
-        return "* Genres: \(separatedGenres.joined(separator: ", "))"
+        return " - Genres: \(separatedGenres.joined(separator: ", "))"
     }
     
     func getArtistName() -> String {
-        "* Developer: \(result.artistName ?? "")"
+        " - Developer: \(result.artistName ?? "")"
     }
     
     func getDateRelease() -> String {
-        "* Date of release: \(result.releaseDate ?? "")"
+        " - Date of release: \(result.releaseDate ?? "")"
     }
 }

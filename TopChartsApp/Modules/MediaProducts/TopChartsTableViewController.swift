@@ -11,15 +11,9 @@ import UIKit
 protocol TopChartsTableViewControllerProtocol: class {
     
     func reloadTableView()
-    func startActivityIndicator()
-    func stopActivityIndicator()
 }
 
 class TopChartsTableViewController: UITableViewController {
-    
-    // MARK: IBOutlets
-    
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Properties
     
@@ -38,9 +32,7 @@ class TopChartsTableViewController: UITableViewController {
         presenter = TopChartsPresenter.init(view: self)
         presenter.getData(from: urlString)
         setupNavigationBar()
-        
-        
-        view.backgroundColor = .opaqueSeparator
+        view.backgroundColor = Colors.lightGreen
     }
 
     // MARK: - Table view data source
@@ -51,7 +43,10 @@ class TopChartsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MediaProductTableViewCell
-        presenter.configurateCell(cell, index: indexPath.row)
+        let cellPresenter = presenter.cellPresenter(for: indexPath, for: cell)
+        
+        cell.presenter = cellPresenter
+   
         return cell
     }
     
@@ -61,7 +56,6 @@ class TopChartsTableViewController: UITableViewController {
         if segue.identifier == "showDetails" {
         let mediaProductVC = segue.destination as! MediaProductViewController
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            
             mediaProductVC.result = presenter.results[indexPath.row]
         }
     }
@@ -70,41 +64,16 @@ class TopChartsTableViewController: UITableViewController {
     
     private func setupNavigationBar() {
         title = userName
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .opaqueSeparator
-    }
-    
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        showAlert(with: "ew", and: "wef") { (alert) in
-            let okAction = UIAlertAction(title: "Да",
-                                         style: .default) { _ in
-                                            self.dismiss(animated: true)
-            }
-            alert.addAction(okAction)
-        }
         
-        
+        let navBar = navigationController?.navigationBar
+        navBar?.prefersLargeTitles = true
+        navBar?.backgroundColor = Colors.lightGreen
     }
-    
 }
 
 extension TopChartsTableViewController: TopChartsTableViewControllerProtocol {
-    
-    func startActivityIndicator() {
-        DispatchQueue.main.async {
-            self.activityIndicator.startAnimating()
-        }
-    }
-    
-    func stopActivityIndicator() {
-        self.activityIndicator.stopAnimating()
-        self.activityIndicator.isHidden = true
-    }
-    
     func reloadTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 }
 

@@ -10,54 +10,45 @@ import UIKit
 
 protocol MediaProductTableViewCellProtocol {
     
-    func display(name: String)
-    func display(stringURL: String)
     func cellColor(color: UIColor)
+    func setImage(for image: UIImage)
+    func setDefaultImage()
+    func setLabel(name: String)
 }
 
 class MediaProductTableViewCell: UITableViewCell {
     
     @IBOutlet var imageOfMedia: UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    
+    var presenter: MediaProductTableViewCellPresenterPorotocol! {
+        didSet {
+            setLabel(name: presenter.resultName)
+            presenter.getImage()
+        }
+    }
 }
 
 extension MediaProductTableViewCell: MediaProductTableViewCellProtocol {
-    
-    func display(name: String) {
-        nameLabel.text = name
-    }
-    
-    func display(stringURL: String) {
-        
-        guard let imageData = ImageManager.shared.getImage(from: stringURL) else { return }
-        
-        DispatchQueue.main.async {
-            self.imageOfMedia?.image = UIImage(data: imageData)
-        }
-    }
     
     func cellColor(color: UIColor) {
         backgroundColor = color
     }
     
-    func configure(with results: [Result]?, for index: Int, cell: MediaProductTableViewCell?) {
-    
-        cell?.nameLabel?.text = results?[index].name
-        DispatchQueue.global().async {
-            
-            guard let imageData = ImageManager.shared.getImage(from: results?[index].artworkUrl100) else { return }
-            
-            DispatchQueue.main.async {
-                cell?.imageOfMedia?.image = UIImage(data: imageData)
-                
-            }
-        }
+    func setLabel(name: String) {
+        nameLabel.text = name
+        nameLabel.font = UIFont(
+        name: "AppleSDGothicNeo-Regular",
+        size: 20)
     }
     
-    func configure(_ imageView: UIImageView) {
-           
-           imageView.layer.cornerRadius = imageView.frame.size.height / 4
-           imageView.clipsToBounds = true
-       }
+    func setDefaultImage() {
+        imageOfMedia.image = #imageLiteral(resourceName: "picture")
+    }
     
+    func setImage(for image: UIImage) {
+        imageOfMedia.image = image
+        imageOfMedia.layer.cornerRadius = imageOfMedia.frame.size.height / 6
+        imageOfMedia.clipsToBounds = true
+    }
 }
