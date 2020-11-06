@@ -9,33 +9,44 @@
 import UIKit
 
 protocol BaseViewControllerProtocol: class {
-    func showAlert(with title: String, and message: String, with complition: @escaping (UIAlertController) -> Void)
-    func showEnterNameAlert(with title: String, and message: String)
+    func showAlert(with title: String,
+                   and message: String,
+                   with complition: @escaping (UIAlertController) -> Void)
+    func showEnterNameAlert(with title: String,
+                            and message: String)
 }
 
 protocol AgreementViewControllerProtocol: BaseViewControllerProtocol {
-    func showHome()
+    func showSettingsVC()
 }
 
 class AgreementViewController: UIViewController {
 
+    // MARK: IB Outlets
     @IBOutlet var actionButtons: [UIButton]!
     @IBOutlet var helloUserLabel: UILabel!
     @IBOutlet var userNameTextField: UITextField!
     
     @IBOutlet var agreementTextView: UITextView!
-    // MARK: Properties
     
+    // MARK: Properties
     private var presenter: AgreementPresenterProtocol!
 
     // MARK: Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         presenter = AgreementPresenter.init(view: self)
-        userNameTextField.delegate = self
-        
+        setupView()
+    }
+    
+    // MARK: IBActions
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        presenter.buttonPressed(tag: sender.tag, text: helloUserLabel.text!)
+    }
+    
+    // MARK: UI
+    private func setupView() {
         view.setGradientBackground(colorOne: Colors.darkGreen,
                                    colorTwo: Colors.lightGreen)
         setLabel(for: helloUserLabel,
@@ -47,25 +58,10 @@ class AgreementViewController: UIViewController {
         configureButtons(for: actionButtons)
     }
     
-    // MARK: IBActions
-    
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        
-        if sender.tag == 0 {
-            presenter.pressDisagree()
-        } else {
-            if helloUserLabel.text == "Привет! Назови себя" {
-                presenter.pressAgree()
-            } else {
-                presenter.moveToTheNextView()
-            }
-        }
-    }
-    
-    // MARK: UI
-    
     private func setAgreementTextView() {
         
+        agreementTextView.layer.cornerRadius = 10
+        agreementTextView.isEditable = false
         agreementTextView.font = UIFont(
             name: "AppleSDGothicNeo-Regular",
             size: 23)
@@ -73,12 +69,11 @@ class AgreementViewController: UIViewController {
                                                     green: 61.0/255.0,
                                                     blue: 28.0/255.0,
                                                     alpha: 0.3)
-        agreementTextView.layer.cornerRadius = 10
-        agreementTextView.isEditable = false
-        
     }
     
-    private func setButton(for button: UIButton, _ title: String, _ titleColor: UIColor) {
+    private func setButton(for button: UIButton,
+                           _ title: String,
+                           _ titleColor: UIColor) {
         
         button.layer.cornerRadius = 10
         button.setTitle(title, for: .normal)
@@ -100,7 +95,10 @@ class AgreementViewController: UIViewController {
         }
     }
     
-    private func setLabel(for label: UILabel,_ text: String,_ textColor: UIColor = .blue, _ fontSize: CGFloat = 20) {
+    private func setLabel(for label: UILabel,
+                          _ text: String,
+                          _ textColor: UIColor = Colors.orange,
+                          _ fontSize: CGFloat = 20) {
         
         label.text = text
         label.textColor = textColor
@@ -109,6 +107,7 @@ class AgreementViewController: UIViewController {
     
     private func configureTextField() {
         
+        userNameTextField.delegate = self
         userNameTextField.returnKeyType = .done
         userNameTextField.enablesReturnKeyAutomatically = true
         userNameTextField.autocorrectionType = .no
@@ -119,16 +118,6 @@ class AgreementViewController: UIViewController {
                                                     alpha: 0.5)
     }
     
-    // MARK: Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showSettings" {
-            let settingsVC = segue.destination as! SettingsViewController
-            settingsVC.userName = helloUserLabel.text
-        }
-    }
-    
     @IBAction func unwindSegueToMainViewController(for unwindSegue: UIStoryboardSegue) {
 
         setLabel(for: helloUserLabel, "Привет! Назови себя")
@@ -136,10 +125,15 @@ class AgreementViewController: UIViewController {
     }
 }
 
+// MARK: AgreementViewControllerProtocol
 extension AgreementViewController: AgreementViewControllerProtocol {
-    
-    func showHome() {
-        performSegue(withIdentifier: "showSettings", sender: nil)
+    func showSettingsVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsVC = storyboard.instantiateViewController(identifier: "SettingsVC") as! SettingsViewController
+        let navigationVC = UINavigationController(rootViewController: settingsVC)
+        navigationVC.modalPresentationStyle = .fullScreen
+        self.present(navigationVC, animated: true, completion: nil)
+        settingsVC.presenter = SettingsPresenter.init(view: settingsVC, userName: userNameTextField.text!)
     }
 }
 

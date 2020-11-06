@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +22,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vz5-HH-TEf">
                                         <rect key="frame" x="0.0" y="0.0" width="41.5" height="24"/>
-                                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" systemColor="systemOrangeColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -38,7 +40,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="00c-ve-5pN">
                                 <rect key="frame" x="20" y="782" width="374" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFO-dx-AWr">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFO-dx-AWr">
                                         <rect key="frame" x="0.0" y="18" width="174.5" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="115" id="eSQ-2S-8VB"/>
@@ -51,7 +53,7 @@
                                             <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="15A-Qa-Ee1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPj-e3-oaR">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPj-e3-oaR">
                                         <rect key="frame" x="199.5" y="18" width="174.5" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="iyu-Xb-G8Y"/>
@@ -60,7 +62,6 @@
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YAY-gi-AVi"/>
-                                            <segue destination="Q2y-hX-hDJ" kind="presentation" identifier="showSettings" modalPresentationStyle="fullScreen" id="oy1-qk-W19"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -73,17 +74,20 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Данное приложение создавалось исключительно для тестирования и закрепления накопленных знаний.
 
+Все данные берутся с официального сайта iTunes.
+
 Введите настройки в следующем окне, чтобы продолжить.
 
 После заполнения настроек Вам будет доступно окно с топ чартами выбранного контента.
 
 Также будет доступно окно для более детального ознакомления с контентом.</string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="00c-ve-5pN" secondAttribute="trailing" constant="20" id="1sX-7o-Wmb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="00c-ve-5pN" secondAttribute="bottom" constant="20" id="5bi-Xl-cE5"/>
@@ -100,7 +104,6 @@
                             <constraint firstItem="KM8-nQ-gLt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="hvb-HJ-Y78"/>
                             <constraint firstItem="00c-ve-5pN" firstAttribute="top" secondItem="KHP-KR-kRZ" secondAttribute="bottom" constant="20" id="nEC-5p-LeN"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="agreementTextView" destination="KHP-KR-kRZ" id="ZIa-1k-Avj"/>
@@ -117,11 +120,11 @@
         <!--Top charts list-->
         <scene sceneID="jo5-gB-zZV">
             <objects>
-                <tableViewController id="5eu-Vc-ACJ" customClass="TopChartsTableViewController" customModule="TopChartsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TopChartsVC" id="5eu-Vc-ACJ" customClass="TopChartsTableViewController" customModule="TopChartsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xRy-cl-Jqe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="hJ2-gs-4fy" customClass="MediaProductTableViewCell" customModule="TopChartsApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
@@ -156,7 +159,6 @@
                                 <connections>
                                     <outlet property="imageOfMedia" destination="6qO-a5-XHq" id="JP3-MC-L5f"/>
                                     <outlet property="nameLabel" destination="pi9-JD-Saq" id="awg-T7-H1N"/>
-                                    <segue destination="wDj-LV-j1Q" kind="show" identifier="showDetails" id="zkb-dl-Hu0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -166,13 +168,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Top charts list" largeTitleDisplayMode="always" id="M20-nc-C03">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="gdJ-wd-VVB"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="gdJ-wd-VVB">
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </barButtonItem>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rej-vG-1GA">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <segue destination="bR4-nd-ajI" kind="unwind" unwindAction="unwindSegueToMainViewControllerFor:" id="XVs-eF-Hk7"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Zwd-Oe-7pA">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <segue destination="bR4-nd-ajI" kind="unwind" unwindAction="unwindSegueToSettingsViewControllerFor:" id="fnJ-fR-HA5"/>
                             </connections>
@@ -187,13 +193,13 @@
         <!--Settings-->
         <scene sceneID="sXx-mN-gS4">
             <objects>
-                <viewController id="Q2y-hX-hDJ" customClass="SettingsViewController" customModule="TopChartsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsVC" id="Q2y-hX-hDJ" customClass="SettingsViewController" customModule="TopChartsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yj9-bM-AvN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Slr-2b-tKo">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1156"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPT-wg-qkE">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
@@ -222,7 +228,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQd-7C-yhX">
+                                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQd-7C-yhX">
                                                 <rect key="frame" x="16" y="264" width="382" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="xwu-WW-Wp3"/>
@@ -237,7 +243,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZd-gq-PC5">
+                                            <pickerView tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZd-gq-PC5">
                                                 <rect key="frame" x="16" y="455" width="382" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="8tq-du-WnR"/>
@@ -252,7 +258,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJ8-BV-KMI">
+                                            <pickerView tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJ8-BV-KMI">
                                                 <rect key="frame" x="16" y="646" width="382" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="Soc-Up-KUv"/>
@@ -261,20 +267,12 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i4f-sV-Hv9">
                                                 <rect key="frame" x="32" y="776" width="350" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1O-hr-OZt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="170" height="50"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtx-YX-Aj6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                         <state key="normal" title="Button"/>
                                                         <connections>
-                                                            <action selector="defaultPickersButtonPressed:" destination="Q2y-hX-hDJ" eventType="touchUpInside" id="qFR-hJ-Wl4"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtx-YX-Aj6">
-                                                        <rect key="frame" x="180" y="0.0" width="170" height="50"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <segue destination="bIV-3k-HAa" kind="presentation" identifier="showHome" modalPresentationStyle="fullScreen" id="LN1-ME-yOG"/>
+                                                            <action selector="showButtonPressed:" destination="Q2y-hX-hDJ" eventType="touchUpInside" id="Xim-X2-gu2"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -324,7 +322,8 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Mfd-iD-S3p"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Slr-2b-tKo" firstAttribute="top" secondItem="Mfd-iD-S3p" secondAttribute="top" id="EO7-mV-2Kw"/>
                             <constraint firstAttribute="bottom" secondItem="Slr-2b-tKo" secondAttribute="bottom" id="aF7-9b-pUc"/>
@@ -332,14 +331,11 @@
                             <constraint firstItem="Slr-2b-tKo" firstAttribute="trailing" secondItem="Mfd-iD-S3p" secondAttribute="trailing" id="pfH-Zp-uXM"/>
                             <constraint firstItem="JPT-wg-qkE" firstAttribute="width" secondItem="yj9-bM-AvN" secondAttribute="width" id="trY-HY-8zg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Mfd-iD-S3p"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="l0C-Rj-2VK"/>
-                    <size key="freeformSize" width="414" height="1200"/>
                     <connections>
                         <outlet property="backgroundView" destination="JPT-wg-qkE" id="Pv6-SX-ofp"/>
                         <outlet property="countryPicker" destination="nZd-gq-PC5" id="1Os-D5-M0A"/>
-                        <outlet property="defaultPickersButton" destination="s1O-hr-OZt" id="yZ5-Ow-OdJ"/>
                         <outlet property="mediaProductPicker" destination="jqa-YN-s7t" id="pGw-7V-32P"/>
                         <outlet property="quantityPicker" destination="pJ8-BV-KMI" id="4J8-L5-DRo"/>
                         <outlet property="showTopChartsButton" destination="Mtx-YX-Aj6" id="mFk-nS-zzO"/>
@@ -348,21 +344,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7f-ra-VNS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="104"/>
+            <point key="canvasLocation" x="968" y="104"/>
         </scene>
         <!--Media Product View Controller-->
         <scene sceneID="BM4-sv-r9Y">
             <objects>
-                <viewController id="wDj-LV-j1Q" customClass="MediaProductViewController" customModule="TopChartsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MediaProductVC" id="wDj-LV-j1Q" customClass="MediaProductViewController" customModule="TopChartsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="axE-7t-tbi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pK4-ti-sFr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ghl-nm-9YF">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d31-eK-C9u">
                                                 <rect key="frame" x="6" y="16" width="402" height="400"/>
@@ -387,7 +383,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
-                                                <color key="highlightedColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="highlightedColor" systemColor="labelColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDK-4S-Gi3">
                                                 <rect key="frame" x="16" y="446" width="382" height="55"/>
@@ -425,7 +421,8 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="D5p-Yr-Hvx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="pK4-ti-sFr" secondAttribute="bottom" id="Ayd-dr-LI0"/>
                             <constraint firstItem="pK4-ti-sFr" firstAttribute="trailing" secondItem="D5p-Yr-Hvx" secondAttribute="trailing" id="U3t-lp-OB1"/>
@@ -433,7 +430,6 @@
                             <constraint firstItem="pK4-ti-sFr" firstAttribute="leading" secondItem="D5p-Yr-Hvx" secondAttribute="leading" id="nUg-5o-Cu7"/>
                             <constraint firstItem="pK4-ti-sFr" firstAttribute="top" secondItem="D5p-Yr-Hvx" secondAttribute="top" id="tGA-Gm-wV2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="D5p-Yr-Hvx"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="JDX-AC-T8U"/>
                     <size key="freeformSize" width="414" height="896"/>
@@ -452,6 +448,7 @@
         <!--Navigation Controller-->
         <scene sceneID="UHz-H8-Gol">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fOs-aS-d0C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="bIV-3k-HAa" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="h3B-04-UHR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="eHu-gY-ICP">
@@ -462,12 +459,22 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="5eu-Vc-ACJ" kind="relationship" relationship="rootViewController" id="7wx-qG-5WA"/>
+                        <segue destination="Q2y-hX-hDJ" kind="relationship" relationship="rootViewController" id="Zbk-sd-lWN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fOs-aS-d0C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1055" y="104"/>
+            <point key="canvasLocation" x="117" y="104"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

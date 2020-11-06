@@ -9,75 +9,125 @@
 import Foundation
 
 protocol SettingsPresenterProtocol {
-    init(view: SettingsViewControllerProtocol)
-    
-    func getCarriersCount() -> Int
-    func getChannelsCount() -> Int
-    func getCountriesCount() -> Int
-    func getQuantitiesCount() -> Int
+    init(view: SettingsViewControllerProtocol, userName: String)
     
     func getChannels(for carrier: String) -> [Channel]
-    
-    var carriers: [Carrier] { get }
-    var channels: [Channel] { get }
-    var channelsByCarriers: [Channel] { get }
-    var countries: [Country] { get }
-    var quantities: [Quantity] { get }
+    func getPickerViewsCount(tag: Int) -> Int
+    func setupAttributedTitleForRow(tag: Int, row: Int) -> NSAttributedString
+    func didSelectRow(tag: Int, row: Int)
+    func moveToTopChartsVC()
+    func getURLString() -> String
 }
 
 class SettingsPresenter: SettingsPresenterProtocol {
     
-    let view: SettingsViewControllerProtocol!
-    var jsonGenerator = JsonGenerator()
-    
-    required init(view: SettingsViewControllerProtocol) {
-        self.view = view
-    }
-    
     // MARK: Properties
+    private var jsonGenerator = JsonGenerator()
+    private let view: SettingsViewControllerProtocol!
+    private var channelsByCarriers = [Channel]()
     
-    var carriers: [Carrier] {
+    private var urlCarrier: String?
+    private var urlChannel: String?
+    private var urlCountry: String?
+    private var urlQuantity: String?
+    
+    private var userName: String
+    
+    private var carriers: [Carrier] {
         jsonGenerator.carriers
     }
     
-    var countries: [Country] {
+    private var countries: [Country] {
         jsonGenerator.countries
     }
     
-    var quantities: [Quantity] {
+    private var quantities: [Quantity] {
         jsonGenerator.quantities
     }
     
-    var channels: [Channel] {
+    private var channels: [Channel] {
         jsonGenerator.channels
     }
     
-    var channelsByCarriers: [Channel] {
-        getChannels(for: carriers.first!.name)
+    required init(view: SettingsViewControllerProtocol, userName: String) {
+        self.view = view
+        self.userName = userName
+        channelsByCarriers = getChannels(for: carriers.first!.name)
     }
     
     // MARK: Methods
-    
-    func getCarriersCount() -> Int {
-        carriers.count
-    }
-    
-    func getChannelsCount() -> Int {
-        channels.count
-    }
-    
-    func getCountriesCount() -> Int {
-        countries.count
-    }
-    
-    func getQuantitiesCount() -> Int {
-        quantities.count
-    }
-    
     func getChannels(for carrier: String) -> [Channel] {
         let channels = self.channels.filter { (channel) -> Bool in
             channel.typeOfCarrier == carrier
         }
         return channels
+    }
+    
+    func getPickerViewsCount(tag: Int) -> Int {
+        switch tag {
+        case 0:
+            return carriers.count
+        case 1:
+            return channelsByCarriers.count
+        case 2:
+            return countries.count
+        default:
+            return quantities.count
+        }
+    }
+    
+    func setupAttributedTitleForRow(tag: Int, row: Int) -> NSAttributedString {
+        var title = ""
+        
+        switch tag {
+        case 0:
+            let carrier = carriers[row]
+            title = carrier.name
+            urlCarrier = carriers[row].code
+        case 1:
+            let channel = channelsByCarriers[row]
+            title = channel.name
+            urlChannel = channelsByCarriers[row].code
+        case 2:
+            let country = countries[row]
+            title = country.name
+            urlCountry = countries[row].code
+        default:
+            let quantity = quantities[row]
+            title = quantity.name
+            urlQuantity = quantity.name
+        }
+        
+        let attrString = NSAttributedString(string: title,
+                                            attributes: [.foregroundColor:Colors.orange])
+        return attrString
+    }
+    
+    func didSelectRow(tag: Int, row: Int) {
+        switch tag {
+        case 0:
+            let carrier = carriers[row]
+            channelsByCarriers = getChannels(for: carrier.name)
+            urlCarrier = carrier.code
+            view.reloadPickerView()
+        case 1:
+            urlChannel = channelsByCarriers[row].code
+        case 2:
+            urlCountry = countries[row].code
+        default:
+            urlQuantity = quantities[row].name
+        }
+    }
+    
+    func moveToTopChartsVC() {
+        view.showTopChartsVC()
+    }
+    
+    func getURLString() -> String {
+        let url = Requests.shared.configureURL(country: urlCountry ?? "",
+                                               channel: urlChannel ?? "",
+                                               carrier: urlCarrier ?? "",
+                                               quantity: urlQuantity ?? "")
+        return url
     }
 }

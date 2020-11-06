@@ -29,12 +29,8 @@ class NetworkManager {
             } catch let error {
                 print(error.localizedDescription)
             }
-            
         }.resume()
-        
     }
-    
-    
 }
 
 

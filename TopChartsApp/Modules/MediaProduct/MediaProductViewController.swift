@@ -19,6 +19,7 @@ protocol MediaProductViewControllerProtocol: class {
 
 class MediaProductViewController: UIViewController {
     
+    // MARK: IB Outlets
     @IBOutlet var allView: UIView!
     
     @IBOutlet var logoImageView: UIImageView!
@@ -26,16 +27,21 @@ class MediaProductViewController: UIViewController {
     @IBOutlet var genresLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
     
+    // MARK: Properties
     var presenter: MediaProductPresenterProtocol!
     
     var result: Result!
     
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = MediaProductPresenter(view: self, result: result)
-        
         presenter.getImage()
+        setupView()
+    }
+    
+    // MARK: UI
+    private func setupView() {
         
         setupLabel(for: artistNameLabel, with: presenter.getArtistName())
         setupLabel(for: genresLabel, with: presenter.getGenres())
@@ -47,6 +53,7 @@ class MediaProductViewController: UIViewController {
     }
 }
 
+// MARK: MediaProductViewControllerProtocol
 extension MediaProductViewController: MediaProductViewControllerProtocol {
     
     func setupLabel(for label: UILabel, with info: String) {

@@ -8,13 +8,6 @@
 
 import UIKit
 
-extension UIStoryboard {
-    enum Storyboard {
-    case main
-    case home
-    }
-}
-
 extension UIViewController {
     
      func showAlert(with title: String,
@@ -72,7 +65,6 @@ extension AgreementViewController: UITextFieldDelegate {
 extension UIView {
     
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
-        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]

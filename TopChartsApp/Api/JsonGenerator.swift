@@ -39,32 +39,43 @@ class JsonGenerator {
         setupData()
     }
     
-    func setupData() {
+    private func setupData() {
         
-        let carrier1 = Carrier(name: "Apple music", code: "apple-music")
-        let carrier2 = Carrier(name: "Apple store", code: "ios-apps")
-        let carrier3 = Carrier(name: "Books", code: "books")
-        let carrier4 = Carrier(name: "Movies", code: "movies")
+        let carrier1 = Carrier(name: "Apple music",
+                               code: "apple-music")
+        let carrier2 = Carrier(name: "Apple store",
+                               code: "ios-apps")
+        let carrier3 = Carrier(name: "Books",
+                               code: "books")
+        let carrier4 = Carrier(name: "Movies",
+                               code: "movies")
         
         carriers.append(carrier1)
         carriers.append(carrier2)
         carriers.append(carrier3)
         carriers.append(carrier4)
         
-        let channel1 = Channel(name: "Coming Soon", code: "coming-soon",
-                                     typeOfCarrier: "Apple music")
-        let channel2 = Channel(name: "Hot Tracks", code: "hot-tracks",
-                                     typeOfCarrier: "Apple music")
-        let channel3 = Channel(name: "Top Free", code: "top-free",
-                                     typeOfCarrier: "Apple store")
-        let channel4 = Channel(name: "Top Paid", code: "top-paid",
-                                     typeOfCarrier: "Apple store")
-        let channel5 = Channel(name: "Top Free", code: "top-free",
-                                     typeOfCarrier: "Books")
-        let channel6 = Channel(name: "Top Paid", code: "top-paid",
-                                     typeOfCarrier: "Books")
-        let channel7 = Channel(name: "Top Movies", code: "top-movies",
-        typeOfCarrier: "Movies")
+        let channel1 = Channel(name: "Coming Soon",
+                               code: "coming-soon",
+                               typeOfCarrier: "Apple music")
+        let channel2 = Channel(name: "Hot Tracks",
+                               code: "hot-tracks",
+                               typeOfCarrier: "Apple music")
+        let channel3 = Channel(name: "Top Free",
+                               code: "top-free",
+                               typeOfCarrier: "Apple store")
+        let channel4 = Channel(name: "Top Paid",
+                               code: "top-paid",
+                               typeOfCarrier: "Apple store")
+        let channel5 = Channel(name: "Top Free",
+                               code: "top-free",
+                               typeOfCarrier: "Books")
+        let channel6 = Channel(name: "Top Paid",
+                               code: "top-paid",
+                               typeOfCarrier: "Books")
+        let channel7 = Channel(name: "Top Movies",
+                               code: "top-movies",
+                               typeOfCarrier: "Movies")
         
         channels.append(channel1)
         channels.append(channel2)
@@ -76,11 +87,15 @@ class JsonGenerator {
         
         let country1 = Country(name: "Russia", code: "ru")
         let country2 = Country(name: "USA", code: "us")
-        let country3 = Country(name: "China", code: "cn")
+        let country3 = Country(name: "Finland", code: "fi")
+        let country4 = Country(name: "China", code: "cn")
+        let country5 = Country(name: "Australia", code: "au")
         
         countries.append(country1)
         countries.append(country2)
         countries.append(country3)
+        countries.append(country4)
+        countries.append(country5)
         
         let quantity1 = Quantity(name: "100")
         let quantity2 = Quantity(name: "50")
@@ -92,5 +107,4 @@ class JsonGenerator {
         quantities.append(quantity3)
         quantities.append(quantity4)
     }
-    
 }

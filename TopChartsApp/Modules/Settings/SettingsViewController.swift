@@ -9,7 +9,8 @@
 import UIKit
 
 protocol SettingsViewControllerProtocol: class {
-    
+    func reloadPickerView()
+    func showTopChartsVC()
 }
 
 class SettingsViewController: UIViewController {
@@ -23,78 +24,84 @@ class SettingsViewController: UIViewController {
     @IBOutlet var quantityPicker: UIPickerView!
     
     @IBOutlet var showTopChartsButton: UIButton!
-    @IBOutlet var defaultPickersButton: UIButton!
     
     // MARK: Properties
-    var requests = Requests.shared
     var presenter: SettingsPresenterProtocol!
     
-    var urlCarrier = ""
-    var urlChannel = ""
-    var urlCountry = ""
-    var urlQuantity = ""
-    
-    var channelsByCarriers = [Channel]()
+    private var channelsByCarriers = [Channel]()
     var userName: String!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = SettingsPresenter.init(view: self)
-        channelsByCarriers = presenter.channels
-        view.setGradientBackground(colorOne: Colors.darkGreen, colorTwo: Colors.lightGreen)
+        setupView()
         setDelegatesForPickerViews()
-        configureButton(for: showTopChartsButton, title: "Показать", titleColor: .white)
-        configureButton(for: defaultPickersButton, title: "Сбросить", titleColor: .white)
     }
     
-    func setDelegatesForPickerViews() {
+    private func setupView() {
+        setupNavigationBar()
+        view.setGradientBackground(colorOne: Colors.darkGreen,
+                                   colorTwo: Colors.lightGreen)
+        configureButton(for: showTopChartsButton,
+                        title: "Показать",
+                        titleColor: .white)
+    }
+    
+    private func setupNavigationBar() {
+        title = "Настройки"
+        let navBar = navigationController?.navigationBar
+        navBar?.prefersLargeTitles = true
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = Colors.lightGreen
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         
+        navBar?.standardAppearance = navBarAppearance
+        navBar?.scrollEdgeAppearance = navBarAppearance
+    }
+    
+    private func setDelegatesForPickerViews() {
         mediaProductPicker.delegate = self
         typeOfChanelPicker.delegate = self
         countryPicker.delegate = self
         quantityPicker.delegate = self
     }
     
-    func configureButton(for button: UIButton, title: String, titleColor: UIColor) {
+    private func configureButton(for button: UIButton,
+                                 title: String,
+                                 titleColor: UIColor) {
         
         button.setTitle(title, for: .normal)
         button.setTitleColor(titleColor, for: .normal)
-        button.backgroundColor = UIColor(red: 76.0/255.0, green: 125.0/255.0, blue: 50.0/255.0, alpha: 0.5)
+        button.backgroundColor = UIColor(red: 76.0/255.0,
+                                         green: 125.0/255.0,
+                                         blue: 50.0/255.0,
+                                         alpha: 0.5)
         button.layer.cornerRadius = 10
     }
     
-    func deselectPickerViewsAfterUpdate() {
-        countryPicker.selectRow(0, inComponent: 0, animated: true)
-        quantityPicker.selectRow(0, inComponent: 0, animated: true)
-        typeOfChanelPicker.selectRow(0, inComponent: 0, animated: true)
+    private func deselectPickerViewsAfterUpdate() {
+        countryPicker.selectRow(0,
+                                inComponent: 0,
+                                animated: true)
+        quantityPicker.selectRow(0,
+                                 inComponent: 0,
+                                 animated: true)
+        typeOfChanelPicker.selectRow(0,
+                                     inComponent: 0,
+                                     animated: true)
     }
     
-    // MARK: Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showHome" {
-            let navigationVC = segue.destination as! UINavigationController
-            let topChartsVC = navigationVC.topViewController as! TopChartsTableViewController
-            topChartsVC.userName = self.userName
-            topChartsVC.urlString = requests.configureURL(country: urlCountry, channel: urlChannel, carrier: urlCarrier, quantity: urlQuantity)
-            print(topChartsVC.urlString!)
-        }
+    // MARK: IB Actions
+    @IBAction func showButtonPressed(_ sender: Any) {
+        presenter.moveToTopChartsVC()
     }
     
-     @IBAction func unwindSegueToSettingsViewController(for unwindSegue: UIStoryboardSegue) {
-        }
-    
-    @IBAction func defaultPickersButtonPressed(_ sender: Any) {
-        mediaProductPicker.selectRow(0, inComponent: 0, animated: true)
-        countryPicker.selectRow(0, inComponent: 0, animated: true)
-        quantityPicker.selectRow(0, inComponent: 0, animated: true)
-        typeOfChanelPicker.selectRow(0, inComponent: 0, animated: true)
+    @IBAction func unwindSegueToSettingsViewController(for unwindSegue: UIStoryboardSegue) {
     }
 }
-
-   
 
 // MARK: UIPickerViewDataSource
 extension SettingsViewController: UIPickerViewDataSource  {
@@ -103,77 +110,40 @@ extension SettingsViewController: UIPickerViewDataSource  {
         1
     }
     
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        switch pickerView {
-        case mediaProductPicker:
-            return presenter.getCarriersCount()
-        case typeOfChanelPicker:
-            return channelsByCarriers.count
-        case countryPicker:
-            return presenter.getCountriesCount()
-        case quantityPicker:
-            return presenter.getQuantitiesCount()
-        default:
-            return 0
-        }
+    public func pickerView(_ pickerView: UIPickerView,
+                           numberOfRowsInComponent component: Int) -> Int {
+        presenter.getPickerViewsCount(tag: pickerView.tag)
     }
 }
 
 // MARK: UIPickerViewDelegate
 extension SettingsViewController: UIPickerViewDelegate {
     
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        
-        var title = ""
-        
-        switch pickerView {
-        case mediaProductPicker:
-            let carrier = presenter.carriers[row]
-            title = carrier.name
-            urlCarrier = presenter.carriers[row].code
-        case typeOfChanelPicker:
-            let channel = channelsByCarriers[row]
-            title = channel.name
-            urlChannel = channelsByCarriers[row].code
-        case countryPicker:
-            let country = presenter.countries[row]
-            title = country.name
-            urlCountry = presenter.countries[row].code
-        case quantityPicker:
-            let quantity = presenter.quantities[row]
-            title = quantity.name
-            urlQuantity = quantity.name
-        default:
-            break
-        }
-        
-        let attrString = NSAttributedString(string: title,
-                                            attributes: [.foregroundColor:Colors.orange])
-        return attrString
+    func pickerView(_ pickerView: UIPickerView,
+                    attributedTitleForRow row: Int,
+                    forComponent component: Int) -> NSAttributedString? {
+        presenter.setupAttributedTitleForRow(tag: pickerView.tag, row: row)
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        switch pickerView {
-        case mediaProductPicker:
-            let carrier = presenter.carriers[row]
-            channelsByCarriers = presenter.getChannels(for: carrier.name)
-            urlCarrier = carrier.code
-            typeOfChanelPicker.reloadAllComponents()
-            deselectPickerViewsAfterUpdate()
-        case typeOfChanelPicker:
-            urlChannel = channelsByCarriers[row].code
-        case countryPicker:
-            urlCountry = presenter.countries[row].code
-        case quantityPicker:
-            urlQuantity = presenter.quantities[row].name
-        default:
-            break
-        }
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
+        presenter.didSelectRow(tag: pickerView.tag, row: row)
     }
-    
 }
 
+// MARK: SettingsViewControllerProtocol
 extension SettingsViewController: SettingsViewControllerProtocol {
+    func reloadPickerView() {
+        typeOfChanelPicker.reloadAllComponents()
+        deselectPickerViewsAfterUpdate()
+    }
+    
+    func showTopChartsVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let topChartsVC = storyboard.instantiateViewController(identifier: "TopChartsVC") as! TopChartsTableViewController
+        self.navigationController?.pushViewController(topChartsVC, animated: true)
+        let url = presenter.getURLString()
+        topChartsVC.presenter = TopChartsPresenter.init(view: topChartsVC, stringURL: url)
+    }
 }

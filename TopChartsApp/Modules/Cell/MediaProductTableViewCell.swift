@@ -20,12 +20,9 @@ class MediaProductTableViewCell: UITableViewCell {
     
     @IBOutlet var imageOfMedia: UIImageView!
     @IBOutlet var nameLabel: UILabel!
-    
-    var presenter: MediaProductTableViewCellPresenterPorotocol! {
-        didSet {
-            setLabel(name: presenter.resultName)
-            presenter.getImage()
-        }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 }
 

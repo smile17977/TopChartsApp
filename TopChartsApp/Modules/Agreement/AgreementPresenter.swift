@@ -10,16 +10,11 @@ import UIKit
 
 protocol AgreementPresenterProtocol {
     init(view: AgreementViewControllerProtocol)
-    
-    func pressDisagree()
-    func pressAgree()
-    func moveToTheNextView()
-    
+
+    func buttonPressed(tag: Int, text: String)
 }
 
 class AgreementPresenter: AgreementPresenterProtocol {
-    
-    
     
     private unowned let view: AgreementViewControllerProtocol
     
@@ -28,7 +23,8 @@ class AgreementPresenter: AgreementPresenterProtocol {
     }
     
     func pressDisagree() {
-        view.showAlert(with: "Вы уверены?", and: "Приложение будет закрыто") { (alert) in
+        view.showAlert(with: "Вы уверены?",
+                       and: "Приложение будет закрыто") { (alert) in
             let okAction = UIAlertAction(title: "Да",
                                          style: .default) { _ in
                                             exit(0)
@@ -37,14 +33,24 @@ class AgreementPresenter: AgreementPresenterProtocol {
         }
     }
     
-    func pressAgree() {
-        view.showEnterNameAlert(with: "Вы забыли заполнить поле имени", and: "Пожалуйста введите своё имя")
+    func pressAgree(text: String) {
+        if text == "Привет! Назови себя" {
+            view.showEnterNameAlert(with: "Вы забыли заполнить поле имени",
+                                    and: "Пожалуйста введите своё имя")
+        } else {
+            moveToTheNextView()
+        }
     }
     
     func moveToTheNextView() {
-        view.showHome()
+        view.showSettingsVC()
     }
     
+    func buttonPressed(tag: Int, text: String) {
+        if tag == 0 {
+            pressDisagree()
+        } else {
+            pressAgree(text: text)
+        }
+    }
 }
-
-
